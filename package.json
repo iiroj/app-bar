@@ -1,0 +1,48 @@
+{
+  "name": "app-bar",
+  "version": "1.0.0",
+  "description": "An app bar for React that stays out of your way",
+  "licence": "MIT",
+  "homepage": "https://github.com/iiroj/app-bar",
+  "repository": "github:iiroj/app-bar",
+  "bugs": "https://github.com/iiroj/app-bar/issues",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "index.js.map"
+  ],
+  "scripts": {
+    "start": "parcel demo.html",
+    "lint": "tslint -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.3.13",
+    "@types/react-dom": "^16.0.5",
+    "css-wipe": "^4.3.0",
+    "emotion": "^9.1.2",
+    "parcel-bundler": "^1.7.1",
+    "prettier": "^1.12.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.12.0",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-plugin-prettier": "^1.3.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.8.3"
+  },
+  "keywords": [
+    "react",
+    "header",
+    "navigation",
+    "bar",
+    "menu",
+    "hamburger"
+  ]
+}
