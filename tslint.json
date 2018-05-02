@@ -8,7 +8,6 @@
   "rules": {
     "member-ordering": false,
     "no-unused-variable": true,
-    "jsx-no-multiline-js": false,
     "prettier": [
       true,
       {

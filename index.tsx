@@ -85,7 +85,7 @@ export default class AppBar extends React.PureComponent<
   public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
     const { disabled } = this.props;
 
-    if (disabled !== wasDisabled) {
+    if (disabled === wasDisabled) {
       return;
     }
 
