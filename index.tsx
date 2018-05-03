@@ -50,12 +50,12 @@ export default class AppBar extends React.PureComponent<
 
     const oldScroll = this.state.scroll;
     const direction = scroll - oldScroll > 0 ? 'down' : 'up';
-    const top = this.state.top + oldScroll - scroll;
-    const height = this.internalRef.getBoundingClientRect().height;
 
     if (direction === 'down') {
-      this.setState({ top: Math.max(top, -height) });
+      const height = this.internalRef.getBoundingClientRect().height;
+      this.setState({ top: -height });
     } else {
+      const top = this.state.top + oldScroll - scroll;
       this.setState({ top: Math.min(top, 0) });
     }
 
