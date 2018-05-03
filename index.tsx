@@ -8,8 +8,8 @@ export interface AppBarProps {
 }
 
 export interface AppBarState {
-  readonly scroll: number;
-  readonly top: number;
+  scroll: number;
+  top: number;
 }
 
 export default class AppBar extends React.PureComponent<
@@ -106,7 +106,7 @@ export default class AppBar extends React.PureComponent<
     const { children, innerRef, ...props } = this.props;
     const style: React.CSSProperties = {
       display: 'block',
-      position: 'fixed',
+      position: 'sticky',
       top: this.state.top,
       width: '100%'
     };

@@ -10,6 +10,11 @@ const containerStyles = css`
   min-height: 1000vh;
 `;
 
+const padding = css`
+  background-color: rgba(242, 242, 242);
+  height: 128px;
+`;
+
 const appBarStyles = css`
   background-color: white;
   box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
@@ -20,6 +25,7 @@ const appBarStyles = css`
 
 const Demo = () => (
   <div className={containerStyles}>
+    <div className={padding} />
     <AppBar className={appBarStyles}>Scroll up and down for demo</AppBar>
   </div>
 );

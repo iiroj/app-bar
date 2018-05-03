@@ -5,7 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/iiroj/app-bar.svg)](https://github.com/iiroj/app-bar/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/iiroj/app-bar.svg)](https://github.com/iiroj/app-bar/pulls)
 
-An App Bar for your React app that stays out of your way.
+An App Bar for React that stays out of your way.
 
 >When the scrolling is just right
 
@@ -46,12 +46,12 @@ The `<AppBar />` component is `<div />` element with the following inline styles
 
 ```css
   display: block;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
 ```
 
-In other words, `<AppBar />` is a fixed full-width element at the top of your screen. The only functionality is that `<AppBar />` will move out the viewport when scrolling down, and back in when scrolling up.
+In other words, `<AppBar />` is a fixed full-width element that sticks to the top of your screen. The only functionality is that `<AppBar />` will move out the viewport when scrolling down, and back in when scrolling up.
 
 ### Disabling
 
