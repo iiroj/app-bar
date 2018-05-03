@@ -63,7 +63,7 @@ export default class AppBar extends React.PureComponent<
   };
 
   private addEventListener() {
-    if (typeof window !== 'undefined') {
+    if ((typeof window as Partial<Window>) !== 'undefined') {
       this.setState({ scroll: window.pageYOffset }, () =>
         window.addEventListener('scroll', this.handleScroll)
       );
@@ -71,7 +71,7 @@ export default class AppBar extends React.PureComponent<
   }
 
   private removeEventListener() {
-    if (typeof window !== 'undefined') {
+    if ((typeof window as Partial<Window>) !== 'undefined') {
       window.removeEventListener('scroll', this.handleScroll);
     }
   }
