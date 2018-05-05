@@ -11,7 +11,7 @@ const containerStyles = css`
 `;
 
 const padding = css`
-  background-color: rgba(242, 242, 242);
+  background-color: rgb(242, 242, 242);
   height: 128px;
 `;
 

@@ -37,7 +37,21 @@ export default class AppBar extends React.PureComponent<
     }
   };
 
-  private handleScroll = () => {
+  private setStyle = () => {
+    if (this.internalRef) {
+      this.internalRef.setAttribute(
+        'style',
+        'position: -webkit-sticky;' +
+          'position: sticky;' +
+          'top: 0;' +
+          'transition: top 100ms;' +
+          'width: 100%;' +
+          'display: block;'
+      );
+    }
+  };
+
+  private animateTop = () => {
     if (!this.internalRef || this.props.disabled) {
       return;
     }
@@ -50,17 +64,22 @@ export default class AppBar extends React.PureComponent<
 
     const oldScroll = this.state.scroll;
     const direction = scroll - oldScroll > 0 ? 'down' : 'up';
-    const top = this.state.top + oldScroll - scroll;
+    const newTop = this.state.top + oldScroll - scroll;
     const height = this.internalRef.getBoundingClientRect().height;
 
+    let top;
+
     if (direction === 'down') {
-      this.setState({ top: Math.max(top, -height) });
+      top = Math.max(newTop, -height);
     } else {
-      this.setState({ top: Math.min(top, 0) });
+      top = Math.min(newTop, 0);
     }
 
-    this.setState({ scroll });
+    this.setState({ scroll, top });
+    this.internalRef.style.top = top.toString();
   };
+
+  private handleScroll = () => window.requestAnimationFrame(this.animateTop);
 
   private addEventListener() {
     if ((typeof window as Partial<Window>) !== 'undefined') {
@@ -80,6 +99,8 @@ export default class AppBar extends React.PureComponent<
     if (!this.props.disabled) {
       this.addEventListener();
     }
+
+    this.setStyle();
   }
 
   public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
@@ -104,15 +125,9 @@ export default class AppBar extends React.PureComponent<
 
   public render() {
     const { children, innerRef, ...props } = this.props;
-    const style: React.CSSProperties = {
-      display: 'block',
-      position: 'sticky',
-      top: this.state.top,
-      width: '100%'
-    };
 
     return (
-      <div style={style} ref={this.createRef} {...props}>
+      <div ref={this.createRef} {...props}>
         {children}
       </div>
     );
