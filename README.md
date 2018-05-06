@@ -11,6 +11,13 @@ An App Bar for React that stays out of your way.
 
 Also known as a Header, a Navigation Bar, or a Navbar. I chose App Bar because it was available on npm.
 
+## Requirements
+
+- React
+- Something to style the `<AppBar />` with, like [styled-components](https://github.com/styled-components/styled-components) or [emotion](https://github.com/emotion-js/emotion)
+- `window.requestAnimationFrame`. You could use a [polyfill](https://github.com/chrisdickinson/raf) for older browsers
+- `position: sticky;` support. For Safari, you should add `position: -webkit-sticky;` to your own styles. Unfortunately this is not possible to support with React's inline style syntax.
+
 ## Usage
 
 Basic usage:
@@ -28,6 +35,7 @@ const styles = css`
   background-color: white;
   box-shadow: ${open ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.08)'};
   height: 64px;
+  position: -webkit-sticky /* This is needed for Safari support */
 `;
 
 ...
@@ -47,11 +55,10 @@ The `<AppBar />` component is `<div />` element with the following inline styles
 ```css
   display: block;
   position: sticky;
-  top: 0;
   width: 100%;
 ```
 
-In other words, `<AppBar />` is a fixed full-width element that sticks to the top of your screen. The only functionality is that `<AppBar />` will move out the viewport when scrolling down, and back in when scrolling up.
+In other words, `<AppBar />` is a fixed full-width element that sticks to the top of your screen. The only functionality is that `<AppBar />` will move out the viewport when scrolling down, and back in when scrolling up. This is done by controlling the `top` CSS property.
 
 ### Disabling
 

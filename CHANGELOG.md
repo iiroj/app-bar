@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2018-05-05
+### Removed
+- Set styles the old way for SSR support (this leaves out Safari's `position: -webkit-sticky;` from the default styles).
+
 ## [1.2.0] - 2018-05-05
 ### Changed
 - Styles are set via the dom node's `setAttribute` to allow for `position: -webkit-sticky;`

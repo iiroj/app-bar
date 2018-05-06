@@ -37,20 +37,6 @@ export default class AppBar extends React.PureComponent<
     }
   };
 
-  private setStyle = () => {
-    if (this.internalRef) {
-      this.internalRef.setAttribute(
-        'style',
-        'position: -webkit-sticky;' +
-          'position: sticky;' +
-          'top: 0;' +
-          'transition: top 100ms;' +
-          'width: 100%;' +
-          'display: block;'
-      );
-    }
-  };
-
   private animateTop = () => {
     if (!this.internalRef || this.props.disabled) {
       return;
@@ -99,8 +85,6 @@ export default class AppBar extends React.PureComponent<
     if (!this.props.disabled) {
       this.addEventListener();
     }
-
-    this.setStyle();
   }
 
   public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
@@ -125,9 +109,15 @@ export default class AppBar extends React.PureComponent<
 
   public render() {
     const { children, innerRef, ...props } = this.props;
+    const style: React.CSSProperties = {
+      display: 'block',
+      position: 'sticky',
+      transition: 'top 100ms',
+      width: '100%'
+    };
 
     return (
-      <div ref={this.createRef} {...props}>
+      <div ref={this.createRef} style={style} {...props}>
         {children}
       </div>
     );
