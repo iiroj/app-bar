@@ -117,9 +117,9 @@ export default class AppBar extends React.PureComponent<
     };
 
     return (
-      <div ref={this.createRef} style={style} {...props}>
+      <nav ref={this.createRef} style={style} {...props}>
         {children}
-      </div>
+      </nav>
     );
   }
 }
