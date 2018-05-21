@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2018-05-21
+### Changed
+- Update readme
+
 ## [1.4.0] - 2018-05-21
 ### Added
 - Add three classes, `unfixed`, `hidden` and `pinned` to allow styling on the three absolute states.
