@@ -48,17 +48,34 @@ export default class AppBar extends React.PureComponent<
       return;
     }
 
+    const classList = this.internalRef.classList;
     const oldScroll = this.state.scroll;
     const direction = scroll - oldScroll > 0 ? 'down' : 'up';
     const newTop = this.state.top + oldScroll - scroll;
-    const height = this.internalRef.getBoundingClientRect().height;
+    const { height, top: fromTop } = this.internalRef.getBoundingClientRect();
 
     let top;
 
     if (direction === 'down') {
       top = Math.max(newTop, -height);
+      if (!classList.contains('hidden') && newTop < -height) {
+        classList.remove('pinned');
+        classList.remove('unfixed');
+        classList.add('hidden');
+      }
     } else {
       top = Math.min(newTop, 0);
+      if (!classList.contains('pinned') && newTop > -height) {
+        classList.remove('hidden');
+        classList.remove('unfixed');
+        classList.add('pinned');
+      }
+    }
+
+    if (!classList.contains('unfixed') && fromTop > 0) {
+      classList.remove('hidden');
+      classList.remove('pinned');
+      classList.add('unfixed');
     }
 
     this.setState({ scroll, top });
@@ -85,6 +102,16 @@ export default class AppBar extends React.PureComponent<
     if (!this.props.disabled) {
       this.addEventListener();
     }
+
+    if (this.internalRef) {
+      const { height, top } = this.internalRef.getBoundingClientRect();
+
+      if (top >= 0) {
+        this.internalRef.classList.add('unfixed');
+      } else if (top < -height) {
+        this.internalRef.classList.add('hidden');
+      }
+    }
   }
 
   public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
@@ -109,6 +136,7 @@ export default class AppBar extends React.PureComponent<
 
   public render() {
     const { children, innerRef, ...props } = this.props;
+
     const style: React.CSSProperties = {
       display: 'block',
       position: 'sticky',

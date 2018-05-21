@@ -17,11 +17,15 @@ const padding = css`
 
 const appBarStyles = css`
   background-color: white;
-  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
   height: 64px;
   padding: 20px 32px;
   position: -webkit-sticky;
   line-height: 24px;
+  transition: box-shadow 125ms;
+
+  &.pinned {
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
+  }
 `;
 
 const Demo = () => (
