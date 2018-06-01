@@ -1,6 +1,6 @@
 {
   "name": "app-bar",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "An app bar for React that stays out of your way",
   "licence": "MIT",
   "homepage": "https://github.com/iiroj/app-bar",
@@ -19,23 +19,24 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
-    "react": "^16.3.2"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "@types/react": "^16.3.14",
+    "@types/react": "^16.3.16",
     "@types/react-dom": "^16.0.5",
     "css-wipe": "^4.3.0",
     "emotion": "^9.1.3",
     "parcel-bundler": "^1.8.1",
-    "prettier": "^1.12.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "prettier": "^1.13.3",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-config-standard": "^7.0.0",
     "tslint-plugin-prettier": "^1.3.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^2.8.3"
+    "typescript": "^2.9.1"
   },
   "keywords": [
     "react",
