@@ -1,11 +1,11 @@
 {
   "name": "app-bar",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "An app bar for React that stays out of your way",
   "licence": "MIT",
-  "homepage": "https://github.com/iiroj/app-bar",
-  "repository": "github:iiroj/app-bar",
-  "bugs": "https://github.com/iiroj/app-bar/issues",
+  "homepage": "https://gitlab.com/iiroj/app-bar",
+  "repository": "gitlab:iiroj/app-bar",
+  "bugs": "https://gitlab.com/iiroj/app-bar/issues",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [

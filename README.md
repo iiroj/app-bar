@@ -1,10 +1,5 @@
 # app-bar
 
-[![npm](https://img.shields.io/npm/v/app-bar.svg)](https://www.npmjs.com/package/app-bar)
-[![Build Status](https://travis-ci.org/iiroj/app-bar.svg?branch=master)](https://travis-ci.com/iiroj/app-bar)
-[![GitHub issues](https://img.shields.io/github/issues-raw/iiroj/app-bar.svg)](https://github.com/iiroj/app-bar/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/iiroj/app-bar.svg)](https://github.com/iiroj/app-bar/pulls)
-
 An App Bar for React that stays out of your way.
 
 >When the scrolling is just right
