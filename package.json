@@ -39,11 +39,11 @@
     "typescript": "^2.9.1"
   },
   "keywords": [
-    "react",
-    "header",
-    "navigation",
     "bar",
+    "hamburger",
+    "header",
     "menu",
-    "hamburger"
+    "navigation",
+    "react"
   ]
 }
