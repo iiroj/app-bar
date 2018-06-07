@@ -1,8 +1,8 @@
 {
   "name": "app-bar",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "An app bar for React that stays out of your way",
-  "licence": "MIT",
+  "license": "MIT",
   "homepage": "https://gitlab.com/iiroj/app-bar",
   "repository": "gitlab:iiroj/app-bar",
   "bugs": "https://gitlab.com/iiroj/app-bar/issues",
