@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { css, injectGlobal } from 'emotion';
 import reset from 'css-wipe';
 
-import AppBar from './index';
+import AppBar from '../index';
 
 const containerStyles = css`
   background-color: silver;
@@ -28,7 +28,7 @@ const appBarStyles = css`
   }
 `;
 
-const Demo = () => (
+const Example = () => (
   <div className={containerStyles}>
     <div className={padding} />
     <AppBar className={appBarStyles}>Scroll up and down for demo</AppBar>
@@ -43,4 +43,4 @@ injectGlobal`
   }
 `;
 
-ReactDOM.render(<Demo />, document.getElementById('app'));
+ReactDOM.render(<Example />, document.getElementById('root'));
