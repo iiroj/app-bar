@@ -22,7 +22,7 @@ lint:
   script:
     - npm run lint
 
-test:
+build:
   stage: build
   script:
     - npm run build
