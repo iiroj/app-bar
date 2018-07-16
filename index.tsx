@@ -49,7 +49,7 @@ export default class AppBar extends React.PureComponent<Props, State> {
     const newTop = this.state.top + oldScroll - scroll;
     const { height, top: fromTop } = ref.getBoundingClientRect();
 
-    let top;
+    let top: number;
 
     if (direction === 'down') {
       top = Math.max(newTop, -height);
@@ -74,7 +74,6 @@ export default class AppBar extends React.PureComponent<Props, State> {
     }
 
     this.setState({ scroll, top });
-    ref.style.top = top.toString();
   };
 
   private handleScroll = () => window.requestAnimationFrame(this.animateTop);
@@ -140,7 +139,7 @@ export default class AppBar extends React.PureComponent<Props, State> {
 
     const style: React.CSSProperties = {
       position: 'sticky',
-      transition: 'top 100ms'
+      top: this.state.top + 'px'
     };
 
     return (

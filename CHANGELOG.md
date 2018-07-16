@@ -4,12 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2018-07-16
+### Changed
+- Do not write to dom styles directly
+### Removed
+- Remove redundant inline css `transition: top 100ms;`
+
 ## [1.5.0] - 2018-07-16
 ### changed
 - Use new `React.createRef`
 - Update packages
 ### Fixed
 - Set component to `unfixed` when it has reached the top of the scrollable area
+### Removed
+- Remove redundant inline css `display: block; width: 100%;`
 
 ## [1.4.6] - 2018-07-02
 ### changed
