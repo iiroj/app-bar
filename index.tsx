@@ -72,7 +72,7 @@ export default class AppBar extends React.PureComponent<
       }
     }
 
-    if (!classList.contains('unfixed') && fromTop > 0) {
+    if (!classList.contains('unfixed') && (fromTop > 0 || scroll === 0)) {
       classList.remove('hidden');
       classList.remove('pinned');
       classList.add('unfixed');
