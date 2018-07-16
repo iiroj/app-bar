@@ -28,10 +28,16 @@ const appBarStyles = css`
   }
 `;
 
+const consoleLogRef = (elem: HTMLDivElement) => {
+  console.log(elem);
+};
+
 const Example = () => (
   <div className={containerStyles}>
     <div className={padding} />
-    <AppBar className={appBarStyles}>Scroll up and down for demo</AppBar>
+    <AppBar className={appBarStyles} innerRef={consoleLogRef}>
+      Scroll up and down for demo
+    </AppBar>
   </div>
 );
 

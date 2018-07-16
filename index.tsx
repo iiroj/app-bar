@@ -1,44 +1,39 @@
 import * as React from 'react';
 
-export interface AppBarProps {
+export type Props = React.ComponentClass<HTMLElement> & {
+  readonly className?: string;
   readonly children: any;
   readonly disabled?: boolean;
   readonly innerRef?: (elem: HTMLDivElement) => void;
-  readonly [key: string]: any;
-}
+};
 
-export interface AppBarState {
+export type State = {
   scroll: number;
   top: number;
-}
+};
 
-export default class AppBar extends React.PureComponent<
-  AppBarProps,
-  AppBarState
-> {
+export default class AppBar extends React.PureComponent<Props, State> {
   public static defaultProps = {
     disabled: false
   };
 
-  public constructor(props: AppBarProps) {
+  private internalRef: React.RefObject<HTMLDivElement>;
+
+  public constructor(props: Props) {
     super(props);
+
+    this.internalRef = React.createRef();
+
     this.state = {
       scroll: 0,
       top: 0
     };
   }
 
-  private internalRef: HTMLDivElement | null = null;
-
-  private createRef = (elem: HTMLDivElement) => {
-    this.internalRef = elem;
-    if (this.props.innerRef) {
-      this.props.innerRef(elem);
-    }
-  };
-
   private animateTop = () => {
-    if (!this.internalRef || this.props.disabled) {
+    const ref = this.internalRef.current;
+
+    if (!ref || this.props.disabled) {
       return;
     }
 
@@ -48,11 +43,11 @@ export default class AppBar extends React.PureComponent<
       return;
     }
 
-    const classList = this.internalRef.classList;
+    const classList = ref.classList;
     const oldScroll = this.state.scroll;
     const direction = scroll - oldScroll > 0 ? 'down' : 'up';
     const newTop = this.state.top + oldScroll - scroll;
-    const { height, top: fromTop } = this.internalRef.getBoundingClientRect();
+    const { height, top: fromTop } = ref.getBoundingClientRect();
 
     let top;
 
@@ -79,7 +74,7 @@ export default class AppBar extends React.PureComponent<
     }
 
     this.setState({ scroll, top });
-    this.internalRef.style.top = top.toString();
+    ref.style.top = top.toString();
   };
 
   private handleScroll = () => window.requestAnimationFrame(this.animateTop);
@@ -103,18 +98,24 @@ export default class AppBar extends React.PureComponent<
       this.addEventListener();
     }
 
-    if (this.internalRef) {
-      const { height, top } = this.internalRef.getBoundingClientRect();
+    const ref = this.internalRef.current;
+
+    if (ref) {
+      if (typeof this.props.innerRef === 'function') {
+        this.props.innerRef(ref);
+      }
+
+      const { height, top } = ref.getBoundingClientRect();
 
       if (top >= 0) {
-        this.internalRef.classList.add('unfixed');
+        ref.classList.add('unfixed');
       } else if (top < -height) {
-        this.internalRef.classList.add('hidden');
+        ref.classList.add('hidden');
       }
     }
   }
 
-  public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
+  public componentDidUpdate({ disabled: wasDisabled }: Props) {
     const { disabled } = this.props;
 
     if (disabled === wasDisabled) {
@@ -138,14 +139,12 @@ export default class AppBar extends React.PureComponent<
     const { children, innerRef, ...props } = this.props;
 
     const style: React.CSSProperties = {
-      display: 'block',
       position: 'sticky',
-      transition: 'top 100ms',
-      width: '100%'
+      transition: 'top 100ms'
     };
 
     return (
-      <nav ref={this.createRef} style={style} {...props}>
+      <nav ref={this.internalRef} style={style} {...props}>
         {children}
       </nav>
     );
