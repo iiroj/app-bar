@@ -7,7 +7,7 @@
   ],
   "rules": {
     "member-ordering": false,
-    "no-unused-variable": true,
+    "no-unused-variable": false,
     "prettier": [
       true,
       {
