@@ -1,6 +1,6 @@
 {
   "name": "app-bar",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "An app bar for React that stays out of your way",
   "license": "MIT",
   "author": "Iiro Jäppinen <iiro@jappinen.fi> (https://iiro.fi)",
@@ -11,14 +11,12 @@
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "index.js.map"
+    "index.d.ts"
   ],
   "scripts": {
-    "prestart": "rimraf .cache dist",
     "start": "parcel example/index.html",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc --build tsconfig.build.json"
   },
   "peerDependencies": {
     "react": "^16.4.0",
@@ -33,7 +31,6 @@
     "prettier": "^1.13.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "rimraf": "^2.6.2",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-config-standard": "^7.1.0",
