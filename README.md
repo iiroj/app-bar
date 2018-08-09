@@ -1,10 +1,30 @@
-# app-bar
-
-An App Bar for React that stays out of your way.
-
->When the scrolling is just right
-
-Also known as a Header, a Navigation Bar, or a Navbar. I chose App Bar because it was available on npm.
+<div align="center">
+  <h1 align="center">app-bar</h1>
+  <p>An App Bar for React that stays out of your way.</p>
+  <blockquote>When the scrolling is just right</blockquote>
+  <p>Also known as a Header, a Navigation Bar, or a Navbar. I chose App Bar because it was available on npm.</p>
+  <a href="https://www.npmjs.com/package/app-bar"><strong>npm</strong></a> ·
+  <a href="https://gitlab.com/iiroj/app-bar"><strong>GitLab</strong></a>
+  <br/>
+  <br/>
+  <a href="https://www.npmjs.com/package/app-bar">
+    <img src="https://img.shields.io/npm/v/app-bar.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/app-bar">
+    <img src="https://img.shields.io/github/languages/code-size/iiroj/app-bar.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/app-bar/pipelines/">
+    <img src="https://img.shields.io/badge/GitLab-Pipeline-lightgrey.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/app-bar/blob/master/package.json">
+    <img src="https://img.shields.io/david/iiroj/app-bar.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/app-bar/blob/master/package.json">
+    <img src="https://img.shields.io/david/dev/iiroj/app-bar.svg?style=flat-square">
+  </a>
+  <br/>
+  <br/>
+</div>
 
 ## Requirements
 
