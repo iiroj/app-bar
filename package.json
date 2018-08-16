@@ -16,7 +16,11 @@
   "scripts": {
     "start": "parcel example/index.html",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc --build tsconfig.build.json"
+    "build": "tsc --build tsconfig.build.json",
+    "version": "standard-version",
+    "prerelease": "npm run lint && npm run build",
+    "release": "git push --follow-tags origin master",
+    "postrelease": "npm publish"
   },
   "peerDependencies": {
     "react": "^16.4.2",
@@ -31,6 +35,7 @@
     "prettier": "^1.14.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "standard-version": "^4.4.0",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "tslint-config-standard": "^7.1.0",
