@@ -27,7 +27,7 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
-    "@types/react": "^16.4.8",
+    "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
     "css-wipe": "^4.3.0",
     "emotion": "^9.2.6",
