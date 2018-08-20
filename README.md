@@ -8,19 +8,19 @@
   <br/>
   <br/>
   <a href="https://www.npmjs.com/package/app-bar">
-    <img src="https://img.shields.io/npm/v/app-bar.svg?style=flat-square">
+    <img src="https://img.shields.io/npm/v/app-bar.svg">
   </a>
   <a href="https://gitlab.com/iiroj/app-bar">
-    <img src="https://img.shields.io/github/languages/code-size/iiroj/app-bar.svg?style=flat-square">
+    <img src="https://img.shields.io/github/languages/code-size/iiroj/app-bar.svg">
   </a>
-  <a href="https://gitlab.com/iiroj/app-bar/pipelines/">
-    <img src="https://img.shields.io/badge/GitLab-Pipeline-lightgrey.svg?style=flat-square">
-  </a>
-  <a href="https://gitlab.com/iiroj/app-bar/blob/master/package.json">
-    <img src="https://img.shields.io/david/iiroj/app-bar.svg?style=flat-square">
+  <a href="https://gitlab.com/iiroj/app-bar/commits/master">
+    <img alt="pipeline status" src="https://gitlab.com/iiroj/app-bar/badges/master/pipeline.svg" />
   </a>
   <a href="https://gitlab.com/iiroj/app-bar/blob/master/package.json">
-    <img src="https://img.shields.io/david/dev/iiroj/app-bar.svg?style=flat-square">
+    <img src="https://img.shields.io/david/iiroj/app-bar.svg">
+  </a>
+  <a href="https://gitlab.com/iiroj/app-bar/blob/master/package.json">
+    <img src="https://img.shields.io/david/dev/iiroj/app-bar.svg">
   </a>
   <br/>
   <br/>
