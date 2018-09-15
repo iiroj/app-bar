@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.8.5"></a>
+## [1.8.5](https://gitlab.com/iiroj/app-bar/compare/v1.8.4...v1.8.5) (2018-09-15)
+
+
+### Bug Fixes
+
+* Update package-lock.json ([a2b0c3b](https://gitlab.com/iiroj/app-bar/commit/a2b0c3b))
+
+
+
 <a name="1.8.4"></a>
 ## [1.8.4](https://gitlab.com/iiroj/app-bar/compare/v1.8.3...v1.8.4) (2018-09-15)
 
