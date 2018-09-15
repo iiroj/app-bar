@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.8.4"></a>
+## [1.8.4](https://gitlab.com/iiroj/app-bar/compare/v1.8.3...v1.8.4) (2018-09-15)
+
+
+
 <a name="1.8.3"></a>
 ## [1.8.3](https://gitlab.com/iiroj/app-bar/compare/v1.8.2...v1.8.3) (2018-09-09)
 
