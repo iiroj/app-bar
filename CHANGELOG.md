@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://gitlab.com/iiroj/app-bar/compare/v2.0.0...v2.0.1) (2018-10-12)
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://gitlab.com/iiroj/app-bar/compare/v1.8.6...v2.0.0) (2018-10-12)
 
