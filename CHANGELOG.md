@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://gitlab.com/iiroj/app-bar/compare/v1.8.6...v2.0.0) (2018-10-12)
+
+
+### Features
+
+* Use React.forwardRef ([253e266](https://gitlab.com/iiroj/app-bar/commit/253e266))
+
+
+### BREAKING CHANGES
+
+* This commit removes the `innerRef` prop and opts to use the `React.forwardRef` API.
+
+
+
 <a name="1.8.6"></a>
 ## [1.8.6](https://gitlab.com/iiroj/app-bar/compare/v1.8.5...v1.8.6) (2018-09-22)
 
