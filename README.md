@@ -87,4 +87,4 @@ If you want to disable `<AppBar />`'s behaviour, supply the `disabled` prop. Whe
 
 ### Ref
 
-If you need to access the dom element, you can supply a function via the `innerRef` prop.
+If you need to access the dom element, you can supply your own ref from `React.createRef` via the `ref?: React.RefObject<any>` prop.

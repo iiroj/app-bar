@@ -1,37 +1,38 @@
 import * as React from 'react';
 
-export type Props = React.ComponentClass<HTMLElement> & {
-  readonly className?: string;
+export interface BaseProps {
   readonly children: any;
+  readonly className?: string;
   readonly disabled?: boolean;
-  readonly innerRef?: (elem: HTMLDivElement) => void;
+}
+
+export type AppBarProps = BaseProps & {
+  readonly innerRef?: React.RefObject<any>;
 };
 
-export type State = {
+export type AppBarState = {
   scroll: number;
+  ref: React.RefObject<HTMLDivElement>;
   top: number;
 };
 
-export default class AppBar extends React.PureComponent<Props, State> {
+class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
   public static defaultProps = {
     disabled: false
   };
 
-  private internalRef: React.RefObject<HTMLDivElement>;
-
-  public constructor(props: Props) {
+  public constructor(props: AppBarProps) {
     super(props);
-
-    this.internalRef = React.createRef();
 
     this.state = {
       scroll: 0,
+      ref: this.props.innerRef || React.createRef(),
       top: 0
     };
   }
 
   private animateTop = () => {
-    const ref = this.internalRef.current;
+    const ref = this.state.ref.current;
 
     if (!ref || this.props.disabled) {
       return;
@@ -97,13 +98,9 @@ export default class AppBar extends React.PureComponent<Props, State> {
       this.addEventListener();
     }
 
-    const ref = this.internalRef.current;
+    const ref = this.state.ref.current;
 
     if (ref) {
-      if (typeof this.props.innerRef === 'function') {
-        this.props.innerRef(ref);
-      }
-
       const { height, top } = ref.getBoundingClientRect();
 
       if (top >= 0) {
@@ -114,7 +111,7 @@ export default class AppBar extends React.PureComponent<Props, State> {
     }
   }
 
-  public componentDidUpdate({ disabled: wasDisabled }: Props) {
+  public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
     const { disabled } = this.props;
 
     if (disabled === wasDisabled) {
@@ -143,9 +140,17 @@ export default class AppBar extends React.PureComponent<Props, State> {
     };
 
     return (
-      <nav ref={this.internalRef} style={style} {...props}>
+      <nav ref={this.state.ref} style={style} {...props}>
         {children}
       </nav>
     );
   }
 }
+
+type WrapperProps = BaseProps & {
+  ref?: React.RefObject<any>;
+};
+
+export default React.forwardRef((props: WrapperProps, ref) => (
+  <AppBar {...props} innerRef={ref as React.RefObject<any>} />
+));

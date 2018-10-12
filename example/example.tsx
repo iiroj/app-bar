@@ -28,18 +28,22 @@ const appBarStyles = css`
   }
 `;
 
-const consoleLogRef = (elem: HTMLDivElement) => {
-  console.log(elem);
-};
+class Example extends React.PureComponent<{}, {}> {
+  state = {
+    ref: React.createRef()
+  };
 
-const Example = () => (
-  <div className={containerStyles}>
-    <div className={padding} />
-    <AppBar className={appBarStyles} innerRef={consoleLogRef}>
-      Scroll up and down for demo
-    </AppBar>
-  </div>
-);
+  render() {
+    return (
+      <div className={containerStyles}>
+        <div className={padding} />
+        <AppBar className={appBarStyles} ref={this.state.ref}>
+          Scroll up and down for demo
+        </AppBar>
+      </div>
+    );
+  }
+}
 
 injectGlobal`
   ${reset}
