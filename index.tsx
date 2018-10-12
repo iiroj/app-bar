@@ -1,16 +1,23 @@
 import * as React from 'react';
 
-export interface BaseProps {
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+type PartialHTMLElement = Omit<
+  React.HTMLProps<HTMLDivElement>,
+  'children' | 'className' | 'ref'
+>;
+
+interface BaseProps extends PartialHTMLElement {
   readonly children: any;
   readonly className?: string;
   readonly disabled?: boolean;
 }
 
-export type AppBarProps = BaseProps & {
+type AppBarProps = BaseProps & {
   readonly innerRef?: React.RefObject<any>;
 };
 
-export type AppBarState = {
+type AppBarState = {
   scroll: number;
   ref: React.RefObject<HTMLDivElement>;
   top: number;
