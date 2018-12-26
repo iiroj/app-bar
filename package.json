@@ -13,7 +13,7 @@
   "files": [
     "dist/**/*"
   ],
-  "sideEffects": "false",
+  "sideEffects": false,
   "scripts": {
     "lint": "tslint -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
