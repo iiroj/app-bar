@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://gitlab.com/iiroj/app-bar/compare/v2.0.5...v2.1.0) (2018-12-26)
+
+
+### Features
+
+* add current position to state ([4457d3c](https://gitlab.com/iiroj/app-bar/commit/4457d3c))
+* allow usage of children as render function that receives current position ([446543c](https://gitlab.com/iiroj/app-bar/commit/446543c))
+* upgrade packages, use styled-components in example ([69c8bbe](https://gitlab.com/iiroj/app-bar/commit/69c8bbe))
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://gitlab.com/iiroj/app-bar/compare/v2.0.4...v2.0.5) (2018-11-30)
 
