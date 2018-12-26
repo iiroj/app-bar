@@ -1,21 +1,33 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { css, injectGlobal } from 'emotion';
-import reset from 'css-wipe';
+import styled, { createGlobalStyle } from "styled-components";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import reset from "react-style-reset/string";
 
-import AppBar from '../index';
+import AppBar from "../index";
 
-const containerStyles = css`
+const Reset = createGlobalStyle`
+  ${reset};
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+`;
+
+const Container = styled.div`
   background-color: silver;
   min-height: 1000vh;
 `;
 
-const padding = css`
+const Padding = styled.div`
   background-color: rgb(242, 242, 242);
   height: 128px;
 `;
 
-const appBarStyles = css`
+const StyledAppBar = styled(AppBar)`
   background-color: white;
   height: 64px;
   padding: 20px 32px;
@@ -29,28 +41,17 @@ const appBarStyles = css`
 `;
 
 class Example extends React.PureComponent<{}, {}> {
-  state = {
-    ref: React.createRef()
-  };
+  private ref: React.Ref<HTMLElement> = React.createRef();
 
   render() {
     return (
-      <div className={containerStyles}>
-        <div className={padding} />
-        <AppBar className={appBarStyles} ref={this.state.ref}>
-          Scroll up and down for demo
-        </AppBar>
-      </div>
+      <Container>
+        <Reset />
+        <Padding />
+        <StyledAppBar ref={this.ref}>Scroll up and down for demo</StyledAppBar>
+      </Container>
     );
   }
 }
 
-injectGlobal`
-  ${reset}
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-`;
-
-ReactDOM.render(<Example />, document.getElementById('root'));
+ReactDOM.render(<Example />, document.getElementById("root"));
