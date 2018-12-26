@@ -154,10 +154,6 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
   }
 }
 
-type WrapperProps = BaseProps & {
-  ref?: React.RefObject<any>;
-};
-
-export default React.forwardRef((props: WrapperProps, ref) => (
-  <AppBar {...props} innerRef={ref as React.RefObject<any>} />
+export default React.forwardRef<HTMLElement, BaseProps>((props, ref) => (
+  <AppBar {...props} innerRef={ref} />
 ));
