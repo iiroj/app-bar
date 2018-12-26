@@ -1,6 +1,6 @@
 {
   "name": "app-bar",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An app bar for React that stays out of your way",
   "license": "MIT",
   "author": "Iiro Jäppinen <iiro@jappinen.fi> (https://iiro.fi)",
