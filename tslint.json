@@ -6,8 +6,6 @@
     "tslint-config-prettier"
   ],
   "rules": {
-    "member-ordering": false,
-    "no-unused-variable": false,
     "prettier": true
   }
 }
