@@ -41,14 +41,18 @@ const StyledAppBar = styled(AppBar)`
 `;
 
 class Example extends React.PureComponent<{}, {}> {
-  private ref: React.Ref<HTMLElement> = React.createRef();
+  private ref: React.Ref<HTMLDivElement> = React.createRef();
 
   render() {
     return (
       <Container>
         <Reset />
         <Padding />
-        <StyledAppBar ref={this.ref}>Scroll up and down for demo</StyledAppBar>
+        <StyledAppBar ref={this.ref}>
+          {position =>
+            `AppBar is currently ${position} — Scroll up and down for demo`
+          }
+        </StyledAppBar>
       </Container>
     );
   }

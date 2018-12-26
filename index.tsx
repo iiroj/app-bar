@@ -7,22 +7,28 @@ type PartialHTMLElement = Omit<
   "children" | "className" | "ref"
 >;
 
+enum Position {
+  HIDDEN = "hidden",
+  PINNED = "pinned",
+  UNFIXED = "unfixed"
+}
+
+type RenderProp = (props: Position) => JSX.Element;
+
 interface BaseProps extends PartialHTMLElement {
-  readonly children: any;
+  readonly children: RenderProp | React.ReactNode;
   readonly className?: string;
   readonly disabled?: boolean;
 }
 
-type AppBarPosition = "pinned" | "unfixed" | "hidden";
-
 type AppBarProps = BaseProps & {
-  readonly innerRef: React.Ref<HTMLElement>;
+  readonly innerRef: React.Ref<HTMLDivElement>;
 };
 
 type AppBarState = {
-  position: AppBarPosition;
+  position: Position;
   scroll: number;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLDivElement>;
   top: number;
 };
 
@@ -32,10 +38,10 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
   };
 
   public state: AppBarState = {
-    position: "unfixed",
+    position: Position.UNFIXED,
     scroll: 0,
     ref:
-      (this.props.innerRef as React.RefObject<HTMLElement>) ||
+      (this.props.innerRef as React.RefObject<HTMLDivElement>) ||
       React.createRef(),
     top: 0
   };
@@ -63,27 +69,30 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
 
     if (direction === "down") {
       top = Math.max(newTop, -height);
-      if (!classList.contains("hidden") && newTop < -height) {
-        classList.remove("pinned");
-        classList.remove("unfixed");
-        classList.add("hidden");
-        this.setState({ position: "hidden" });
+      if (!classList.contains(Position.HIDDEN) && newTop < -height) {
+        classList.remove(Position.PINNED);
+        classList.remove(Position.UNFIXED);
+        classList.add(Position.HIDDEN);
+        this.setState({ position: Position.HIDDEN });
       }
     } else {
       top = Math.min(newTop, 0);
-      if (!classList.contains("pinned") && newTop > -height) {
-        classList.remove("hidden");
-        classList.remove("unfixed");
-        classList.add("pinned");
-        this.setState({ position: "pinned" });
+      if (!classList.contains(Position.PINNED) && newTop > -height) {
+        classList.remove(Position.HIDDEN);
+        classList.remove(Position.UNFIXED);
+        classList.add(Position.PINNED);
+        this.setState({ position: Position.PINNED });
       }
     }
 
-    if (!classList.contains("unfixed") && (fromTop > 0 || scroll === 0)) {
-      classList.remove("hidden");
-      classList.remove("pinned");
-      classList.add("unfixed");
-      this.setState({ position: "unfixed" });
+    if (
+      !classList.contains(Position.UNFIXED) &&
+      (fromTop > 0 || scroll === 0)
+    ) {
+      classList.remove(Position.HIDDEN);
+      classList.remove(Position.PINNED);
+      classList.add(Position.UNFIXED);
+      this.setState({ position: Position.UNFIXED });
     }
 
     this.setState({ scroll, top });
@@ -116,13 +125,13 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
       const { height, top } = ref.getBoundingClientRect();
 
       if (top >= 0) {
-        ref.classList.add("unfixed");
+        ref.classList.add(Position.UNFIXED);
       } else if (top < -height) {
-        ref.classList.add("hidden");
-        this.setState({ position: "hidden" });
+        ref.classList.add(Position.HIDDEN);
+        this.setState({ position: Position.HIDDEN });
       } else {
-        ref.classList.add("pinned");
-        this.setState({ position: "pinned" });
+        ref.classList.add(Position.PINNED);
+        this.setState({ position: Position.PINNED });
       }
     }
   }
@@ -149,20 +158,23 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
 
   public render() {
     const { children, innerRef, ...props } = this.props;
+    const { position, ref, top } = this.state;
 
     const style: React.CSSProperties = {
       position: "sticky",
-      top: this.state.top + "px"
+      top: top + "px"
     };
 
     return (
-      <nav ref={this.state.ref} style={style} {...props}>
-        {children}
+      <nav ref={ref} style={style} {...props}>
+        {typeof children === "function"
+          ? (children as RenderProp)(position)
+          : children}
       </nav>
     );
   }
 }
 
-export default React.forwardRef<HTMLElement, BaseProps>((props, ref) => (
+export default React.forwardRef<HTMLDivElement, BaseProps>((props, ref) => (
   <AppBar {...props} innerRef={ref} />
 ));
