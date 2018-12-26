@@ -35,37 +35,64 @@
 
 ## Usage
 
-Basic usage:
+### Basic
 
-```javascript
-import React from 'react';
-import { css } from 'emotion';
-import Navigation from 'app-bar';
+```jsx
+// @jsx jsx
 
-import { HamburgerMenu, Logo } from './components';
+import React from "react";
+import { css, jsx } from "@emotion/core";
+import Navigation from "app-bar";
+
+import { HamburgerMenu, Logo } from "./components";
 
 ...
 
 const styles = css`
   background-color: white;
-  box-shadow: ${open ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.08)'};
+  box-shadow: ${open ? "none" : "0 1px 2px rgba(0, 0, 0, 0.08)"};
   height: 64px;
   position: -webkit-sticky /* This is needed for Safari support */
 `;
 
 ...
 
-<Navigation className={styles} disabled={open}>
-  <Logo />
-  <HamburgerMenu open={open} />
-</Navigation>
+ReactDOM.render(
+  <Navigation css={styles} disabled={open}>
+    <Logo />
+    <HamburgerMenu open={open} />
+  </Navigation>,
+  document.getElementById("#root")
+);
+```
+
+### Render Prop
+
+To use `<AppBar />`'s current position (_hidden_, _pinned_, or _unfixed_) in its children, you can supply `<AppBar /` a render function as its child:
+
+```jsx
+const SizableLogo = styled(Logo)(props => ({
+  height: props.large ? "128px" : "64px"
+}));
+
+ReactDOM.render(
+  <Navigation css={styles} disabled={open}>
+    {position => (
+      <>
+        <SizableLogo large={!open && position === "unfixed"} />
+        <HamburgerMenu open={open} />
+      </>
+    )}
+  </Navigation>,
+  document.getElementById("#root")
+);
 ```
 
 ### Styling
 
 The `app-bar` comes with very little defaults, and should be styled by supplying it with a `className` property that is attached some CSS.
 
-The `<AppBar />` component is `<nav />` element with the following inline styles:
+The `<AppBar />` component is a `<nav />` element with the following inline styles:
 
 ```css
   display: block;
@@ -87,4 +114,4 @@ If you want to disable `<AppBar />`'s behaviour, supply the `disabled` prop. Whe
 
 ### Ref
 
-If you need to access the dom element, you can supply your own ref from `React.createRef` via the `ref?: React.RefObject<any>` prop.
+If you need to access the dom element, you can supply your own ref from `React.createRef` via the `ref?: React.Ref<HTMLDivElement>` prop.
