@@ -8,11 +8,6 @@
   "rules": {
     "member-ordering": false,
     "no-unused-variable": false,
-    "prettier": [
-      true,
-      {
-        "singleQuote": true
-      }
-    ]
+    "prettier": true
   }
 }
