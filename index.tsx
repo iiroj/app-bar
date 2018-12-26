@@ -7,7 +7,7 @@ type PartialHTMLElement = Omit<
   "children" | "className" | "ref"
 >;
 
-enum Position {
+const enum Position {
   HIDDEN = "hidden",
   PINNED = "pinned",
   UNFIXED = "unfixed"
