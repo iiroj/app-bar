@@ -7,8 +7,9 @@
   "homepage": "https://gitlab.com/iiroj/app-bar",
   "repository": "gitlab:iiroj/app-bar",
   "bugs": "https://gitlab.com/iiroj/app-bar/issues",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "main": "dist/index.js",
+  "browser": "dist/index.umd.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*"
@@ -36,8 +37,10 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-style-reset": "^1.0.2",
-    "rollup": "^0.68.2",
+    "rollup": "^1.0.1",
     "rollup-plugin-babel-minify": "^6.2.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-typescript2": "^0.18.1",
     "standard-version": "^4.4.0",
     "tslint": "^5.12.0",
