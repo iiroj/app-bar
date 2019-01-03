@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://gitlab.com/iiroj/app-bar/compare/v2.2.1...v2.3.0) (2019-01-03)
+
+
+### Features
+
+* upgrade to Rollup v1.0 and build umd bundle ([5c53843](https://gitlab.com/iiroj/app-bar/commit/5c53843))
+
+
+
 <a name="2.2.1"></a>
 ## [2.2.1](https://gitlab.com/iiroj/app-bar/compare/v2.2.0...v2.2.1) (2018-12-26)
 
