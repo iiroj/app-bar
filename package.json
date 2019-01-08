@@ -1,12 +1,12 @@
 {
-  "name": "app-bar",
+  "name": "react-sticky-nav",
   "version": "2.4.0",
-  "description": "An app bar for React that stays out of your way",
+  "description": "A sticky nav bar for React that stays out of your way",
   "license": "MIT",
   "author": "Iiro Jäppinen <iiro@jappinen.fi> (https://iiro.fi)",
-  "homepage": "https://gitlab.com/iiroj/app-bar",
-  "repository": "gitlab:iiroj/app-bar",
-  "bugs": "https://gitlab.com/iiroj/app-bar/issues",
+  "homepage": "https://gitlab.com/iiroj/react-sticky-nav",
+  "repository": "gitlab:iiroj/react-sticky-nav",
+  "bugs": "https://gitlab.com/iiroj/react-sticky-nav/issues",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
@@ -55,7 +55,9 @@
     "hamburger",
     "header",
     "menu",
+    "nav",
     "navigation",
-    "react"
+    "react",
+    "sticky"
   ]
 }

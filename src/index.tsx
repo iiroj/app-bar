@@ -21,23 +21,23 @@ interface BaseProps extends PartialHTMLElement {
   readonly disabled?: boolean;
 }
 
-type AppBarProps = BaseProps & {
+type StickyNavProps = BaseProps & {
   readonly innerRef: React.Ref<HTMLDivElement>;
 };
 
-type AppBarState = {
+type StickyNavState = {
   position: Position;
   scroll: number;
   ref: React.RefObject<HTMLDivElement>;
   top: number;
 };
 
-class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
+class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
   public static defaultProps = {
     disabled: false
   };
 
-  public state: AppBarState = {
+  public state: StickyNavState = {
     position: Position.UNFIXED,
     scroll: 0,
     ref:
@@ -136,7 +136,7 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
     }
   }
 
-  public componentDidUpdate({ disabled: wasDisabled }: AppBarProps) {
+  public componentDidUpdate({ disabled: wasDisabled }: StickyNavProps) {
     const { disabled } = this.props;
 
     if (disabled === wasDisabled) {
@@ -176,5 +176,5 @@ class AppBar extends React.PureComponent<AppBarProps, AppBarState> {
 }
 
 export default React.forwardRef<HTMLDivElement, BaseProps>((props, ref) => (
-  <AppBar {...props} innerRef={ref} />
+  <StickyNav {...props} innerRef={ref} />
 ));

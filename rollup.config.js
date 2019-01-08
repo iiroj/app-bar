@@ -29,7 +29,7 @@ export default [
     output: {
       file: pkg.browser,
       format: "umd",
-      name: "appBar"
+      name: "reactStickyNav"
     },
     external,
     plugins: [resolve(), commonjs(), ...plugins]
