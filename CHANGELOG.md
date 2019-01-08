@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://gitlab.com/iiroj/react-sticky-nav/compare/v2.4.0...v3.0.0) (2019-01-08)
+
+
+### Features
+
+* rename from app-bar to react-sticky-nav ([76dc4a1](https://gitlab.com/iiroj/react-sticky-nav/commit/76dc4a1))
+
+
+### BREAKING CHANGES
+
+* The old package will be deprecated on NPM
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://gitlab.com/iiroj/app-bar/compare/v2.3.0...v2.4.0) (2019-01-04)
 
