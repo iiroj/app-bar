@@ -3,22 +3,23 @@
   <p>A sticky nav bar for React that stays out of your way.</p>
   <blockquote>When the scrolling is just right</blockquote>
   <a href="https://www.npmjs.com/package/react-sticky-nav"><strong>npm</strong></a> ·
+  <a href="https://github.com/iiroj/react-sticky-nav"><strong>GitHub</strong></a> ·
   <a href="https://gitlab.com/iiroj/react-sticky-nav"><strong>GitLab</strong></a>
   <br/>
   <br/>
   <a href="https://www.npmjs.com/package/react-sticky-nav">
     <img src="https://img.shields.io/npm/v/react-sticky-nav.svg">
   </a>
-  <a href="https://gitlab.com/iiroj/react-sticky-nav">
+  <a href="https://github.com/iiroj/react-sticky-nav">
     <img src="https://img.shields.io/github/languages/code-size/iiroj/react-sticky-nav.svg">
   </a>
   <a href="https://gitlab.com/iiroj/react-sticky-nav/commits/master">
     <img alt="pipeline status" src="https://gitlab.com/iiroj/react-sticky-nav/badges/master/pipeline.svg" />
   </a>
-  <a href="https://gitlab.com/iiroj/react-sticky-nav/blob/master/package.json">
+  <a href="https://github.com/iiroj/react-sticky-nav/blob/master/package.json">
     <img src="https://img.shields.io/david/iiroj/react-sticky-nav.svg">
   </a>
-  <a href="https://gitlab.com/iiroj/react-sticky-nav/blob/master/package.json">
+  <a href="https://github.com/iiroj/react-sticky-nav/blob/master/package.json">
     <img src="https://img.shields.io/david/dev/iiroj/react-sticky-nav.svg">
   </a>
   <br/>
