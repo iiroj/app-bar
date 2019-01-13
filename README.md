@@ -13,8 +13,8 @@
   <a href="https://github.com/iiroj/react-sticky-nav">
     <img src="https://img.shields.io/github/languages/code-size/iiroj/react-sticky-nav.svg">
   </a>
-  <a href="https://gitlab.com/iiroj/react-sticky-nav/commits/master">
-    <img alt="pipeline status" src="https://gitlab.com/iiroj/react-sticky-nav/badges/master/pipeline.svg" />
+  <a href="https://travis-ci.com/iiroj/react-sticky-nav">
+    <img src="https://travis-ci.com/iiroj/react-sticky-nav.svg?branch=master" />
   </a>
   <a href="https://github.com/iiroj/react-sticky-nav/blob/master/package.json">
     <img src="https://img.shields.io/david/iiroj/react-sticky-nav.svg">
