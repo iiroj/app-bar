@@ -70,16 +70,14 @@ class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
     if (direction === "down") {
       top = Math.max(newTop, -height);
       if (!classList.contains(Position.HIDDEN) && newTop < -height) {
-        classList.remove(Position.PINNED);
-        classList.remove(Position.UNFIXED);
+        classList.remove(Position.PINNED, Position.UNFIXED);
         classList.add(Position.HIDDEN);
         this.setState({ position: Position.HIDDEN });
       }
     } else {
       top = Math.min(newTop, 0);
       if (!classList.contains(Position.PINNED) && newTop > -height) {
-        classList.remove(Position.HIDDEN);
-        classList.remove(Position.UNFIXED);
+        classList.remove(Position.HIDDEN, Position.UNFIXED);
         classList.add(Position.PINNED);
         this.setState({ position: Position.PINNED });
       }
@@ -89,8 +87,7 @@ class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
       !classList.contains(Position.UNFIXED) &&
       (fromTop > 0 || scroll === 0)
     ) {
-      classList.remove(Position.HIDDEN);
-      classList.remove(Position.PINNED);
+      classList.remove(Position.HIDDEN, Position.PINNED);
       classList.add(Position.UNFIXED);
       this.setState({ position: Position.UNFIXED });
     }
