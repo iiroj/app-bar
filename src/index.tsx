@@ -13,12 +13,19 @@ const enum Position {
   UNFIXED = "unfixed"
 }
 
-type RenderProp = (props: Position) => JSX.Element;
+type ChildFn = (props: Position) => JSX.Element;
+
+type RenderProp = (props: {
+  position: Position;
+  ref: React.RefObject<HTMLDivElement>;
+  top: number;
+}) => JSX.Element;
 
 interface BaseProps extends PartialHTMLElement {
-  readonly children: RenderProp | React.ReactNode;
+  readonly children: ChildFn | React.ReactNode;
   readonly className?: string;
   readonly disabled?: boolean;
+  readonly render?: RenderProp;
 }
 
 type StickyNavProps = BaseProps & {
@@ -154,8 +161,12 @@ class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
   }
 
   public render() {
-    const { children, innerRef, ...props } = this.props;
+    const { children, innerRef, render, ...props } = this.props;
     const { position, ref, top } = this.state;
+
+    if (render) {
+      return render({ position, ref, top });
+    }
 
     const style: React.CSSProperties = {
       position: "sticky",
@@ -165,7 +176,7 @@ class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
     return (
       <nav ref={ref} style={style} {...props}>
         {typeof children === "function"
-          ? (children as RenderProp)(position)
+          ? (children as ChildFn)(position)
           : children}
       </nav>
     );

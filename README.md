@@ -49,7 +49,7 @@ ReactDOM.render(
 );
 ```
 
-### Render Prop
+### Render function as child
 
 To use `<AppBar />`'s current position (_hidden_, _pinned_, or _unfixed_) in its children, you can supply `<AppBar /` a render function as its child:
 
@@ -67,6 +67,26 @@ ReactDOM.render(
       </>
     )}
   </Navigation>,
+  document.getElementById("#root")
+);
+```
+
+
+### `render` prop
+
+if you wish to completely replace the default rendered `<nav />` element, you can use the `render` prop to supply your own. In this case the prop will receive as its argument an object containing the current `position: "hidden" | "pinned" | "unfixed"`, `top: number` and a `ref: React.RefObject<HTMLElement>` that should be attached to the main container:
+
+```jsx
+const Nav = styled.nav`
+  position: sticky;
+  top: 0;
+  tranform: translateY(${props => props.top});
+`
+
+ReactDOM.render(
+  <Navigation render={({ position, top, ref }) => (
+    <Nav top={top} ref={ref}>My custom navbar is {position}</Nav>
+  )} />,
   document.getElementById("#root")
 );
 ```
