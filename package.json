@@ -1,6 +1,6 @@
 {
   "name": "react-sticky-nav",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "A sticky nav bar for React that stays out of your way",
   "license": "MIT",
   "author": "Iiro Jäppinen <iiro@jappinen.fi> (https://iiro.fi)",
