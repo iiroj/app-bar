@@ -1,5 +1,7 @@
 import * as React from "react";
 
+type UndefinedWindow = Window | undefined;
+
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 type PartialHTMLElement = Omit<
@@ -105,7 +107,7 @@ class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
   private handleScroll = () => window.requestAnimationFrame(this.animateTop);
 
   private addEventListener() {
-    if ((typeof window as Partial<Window>) !== "undefined") {
+    if (typeof (window as UndefinedWindow) !== "undefined") {
       this.setState({ scroll: window.pageYOffset }, () =>
         window.addEventListener("scroll", this.handleScroll)
       );
@@ -113,7 +115,7 @@ class StickyNav extends React.PureComponent<StickyNavProps, StickyNavState> {
   }
 
   private removeEventListener() {
-    if ((typeof window as Partial<Window>) !== "undefined") {
+    if (typeof (window as UndefinedWindow) !== "undefined") {
       window.removeEventListener("scroll", this.handleScroll);
     }
   }
