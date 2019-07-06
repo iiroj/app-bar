@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.9](https://github.com/iiroj/react-sticky-nav/compare/v3.1.8...v3.1.9) (2019-07-06)
+
+
+
 ### [3.1.8](https://github.com/iiroj/react-sticky-nav/compare/v3.1.7...v3.1.8) (2019-06-02)
 
 
