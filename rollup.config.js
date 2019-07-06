@@ -29,6 +29,9 @@ export default [
     output: {
       file: pkg.browser,
       format: "umd",
+      globals: {
+        react: "React"
+      },
       name: "reactStickyNav"
     },
     external,
