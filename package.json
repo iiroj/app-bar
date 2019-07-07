@@ -20,18 +20,39 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "watch": "rollup -cw",
     "build": "rollup -c",
-    "preversion": "npm run lint && npm run build",
-    "version": "standard-version",
-    "push": "git push --follow-tags origin master"
+    "version": "standard-version --no-verify"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "npm run lint"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run lint && npm run build"
+    }
   },
   "peerDependencies": {
     "react": ">=16.3",
     "react-dom": ">=16.3"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.0.0",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.16",
+    "commitlint": "^8.0.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
