@@ -1,6 +1,6 @@
 # react-sticky-nav
 
-[![CircleCI](https://circleci.com/gh/iiroj/react-sticky-nav.svg?style=shield)](https://circleci.com/gh/iiroj/react-sticky-nav)
+[![GitHub Actions](https://github.com/iiroj/react-sticky-nav/workflows/Tags/badge.svg)](https://github.com/iiroj/react-sticky-nav/actions)
 [![version](https://img.shields.io/npm/v/react-sticky-nav.svg)](https://www.npmjs.com/package/react-sticky-nav)
 [![code size](https://img.shields.io/github/languages/code-size/iiroj/react-sticky-nav.svg)](https://github.com/iiroj/react-sticky-nav)
 [![dependencies](https://img.shields.io/david/iiroj/react-sticky-nav.svg)](https://github.com/iiroj/react-sticky-nav/blob/master/package.json)
