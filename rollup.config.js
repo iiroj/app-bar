@@ -16,7 +16,7 @@ const plugins = [
 
 export default [
   {
-    input: "src/index.tsx",
+    input: "index.tsx",
     output: [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" }
@@ -25,14 +25,14 @@ export default [
     plugins
   },
   {
-    input: "src/index.tsx",
+    input: "index.tsx",
     output: {
       file: pkg.browser,
       format: "umd",
       globals: {
         react: "React"
       },
-      name: "reactStickyNav"
+      name: "ReactStickyNav"
     },
     external,
     plugins: [resolve(), commonjs(), ...plugins]
