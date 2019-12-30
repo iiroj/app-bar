@@ -19,7 +19,7 @@ export default [
     input: "index.tsx",
     output: [
       { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "es" }
+      { file: pkg.module, format: "esm" }
     ],
     external,
     plugins

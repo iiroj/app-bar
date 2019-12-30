@@ -1,3 +1,7 @@
 /.rpt2_cache
-/dist
 /node_modules
+
+/index.d.ts
+/index.js
+/index.mjs
+/index.umd.js
