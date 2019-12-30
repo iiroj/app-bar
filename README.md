@@ -75,18 +75,19 @@ ReactDOM.render(
 
 ### `render` prop
 
-if you wish to completely replace the default rendered `<nav />` element, you can use the `render` prop to supply your own. In this case the prop will receive as its argument an object containing the current `position: "hidden" | "pinned" | "unfixed"`, `top: number` and a `ref: React.RefObject<HTMLElement>` that should be attached to the main container:
+if you wish to completely replace the default rendered `<nav />` element, you can use the `render` prop to supply your own. In this case the prop will receive as its argument an object containing the current `position: "hidden" | "pinned" | "unfixed"`, `top: number` (mutable) and a `ref: React.Ref<HTMLElement>` that should be attached to the main container:
 
 ```jsx
+import StickyNav, { styles as stickyNavStyles } from "react-sticky-nav";
+
 const Nav = styled.nav`
-  position: sticky;
-  top: 0;
-  tranform: translateY(${props => props.top});
-`
+  ${stickyNavStyles};
+  background: papayagreen;
+`;
 
 ReactDOM.render(
-  <Navigation render={({ position, top, ref }) => (
-    <Nav top={top} ref={ref}>My custom navbar is {position}</Nav>
+  <StickyNav render={({ position, ref }) => (
+    <Nav ref={ref}>My custom navbar is {position}</Nav>
   )} />,
   document.getElementById("#root")
 );

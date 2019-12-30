@@ -1,8 +1,7 @@
 /.cache
-/node_modules
 /dist
 
-/index.d.ts
 /index.js
 /index.mjs
 /index.umd.js
+/index.d.ts

@@ -1,5 +1,5 @@
 import commonjs from "rollup-plugin-commonjs";
-import { terser } from "rollup-plugin-terser";
+import compiler from "@ampproject/rollup-plugin-closure-compiler";
 import resolve from "rollup-plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
 
@@ -10,29 +10,29 @@ const production = !process.env.ROLLUP_WATCH;
 const external = [...Object.keys(pkg.peerDependencies)];
 
 const plugins = [
-  typescript({ typescript: require("typescript") }),
-  production && terser()
+  typescript({ clean: true, typescript: require("typescript") }),
+  production && compiler()
 ];
 
 export default [
   {
-    input: "src/index.tsx",
+    input: "index.tsx",
     output: [
       { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "es" }
+      { file: pkg.module, format: "esm" }
     ],
     external,
     plugins
   },
   {
-    input: "src/index.tsx",
+    input: "index.tsx",
     output: {
       file: pkg.browser,
       format: "umd",
       globals: {
         react: "React"
       },
-      name: "reactStickyNav"
+      name: "ReactStickyNav"
     },
     external,
     plugins: [resolve(), commonjs(), ...plugins]
