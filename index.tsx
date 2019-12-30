@@ -1,4 +1,11 @@
-import React from "react";
+import React, {
+  forwardRef,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 
 type UndefinedWindow = Window | undefined;
 
@@ -31,9 +38,9 @@ interface Props extends PartialHTMLElement {
 }
 
 const useCombinedRefs = function<T>(...refs: React.Ref<T>[]) {
-  const targetRef = React.useRef<T>(null);
+  const targetRef = useRef<T>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     refs.forEach(ref => {
       if (!ref) return;
       if (typeof ref === "function") {
@@ -47,15 +54,15 @@ const useCombinedRefs = function<T>(...refs: React.Ref<T>[]) {
   return targetRef;
 };
 
-const StickyNav = React.forwardRef<HTMLDivElement>(
+const StickyNav = forwardRef<HTMLDivElement>(
   ({ children, disabled, render, ...props }: Props, forwardedRef) => {
-    const [position, setPosition] = React.useState<Position>(Position.UNFIXED);
-    const [prevScroll, setPrevScroll] = React.useState(0);
-    const [top, setTop] = React.useState(0);
-    const innerRef = React.useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState<Position>(Position.UNFIXED);
+    const [prevScroll, setPrevScroll] = useState(0);
+    const [top, setTop] = useState(0);
+    const innerRef = useRef<HTMLDivElement>(null);
     const ref = useCombinedRefs(forwardedRef, innerRef);
 
-    const handleAnimateTop = React.useCallback(() => {
+    const handleAnimateTop = useCallback(() => {
       if (!ref.current || disabled) return;
       const scroll = window.pageYOffset;
       if (scroll < 0) return;
@@ -92,25 +99,25 @@ const StickyNav = React.forwardRef<HTMLDivElement>(
       }
     }, [disabled, prevScroll, top]);
 
-    const animation = React.useRef<number | null>(null);
+    const animation = useRef<number | null>(null);
     const handleScroll = () => {
       if (animation.current) window.cancelAnimationFrame(animation.current);
       animation.current = window.requestAnimationFrame(handleAnimateTop);
     };
 
-    const handleAddEventListener = React.useCallback(() => {
+    const handleAddEventListener = useCallback(() => {
       if (typeof (window as UndefinedWindow) !== "undefined") {
         window.addEventListener("scroll", handleScroll);
       }
     }, [handleScroll]);
 
-    const handleRemoveEventListener = React.useCallback(() => {
+    const handleRemoveEventListener = useCallback(() => {
       if (typeof (window as UndefinedWindow) !== "undefined") {
         window.removeEventListener("scroll", handleScroll);
       }
     }, [handleScroll]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (disabled) handleRemoveEventListener();
       else handleAddEventListener();
       return () => handleAddEventListener();
@@ -135,4 +142,4 @@ const StickyNav = React.forwardRef<HTMLDivElement>(
   }
 );
 
-export default React.memo(StickyNav);
+export default memo(StickyNav);
