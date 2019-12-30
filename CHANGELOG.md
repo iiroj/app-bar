@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/iiroj/react-sticky-nav/compare/v3.1.16...v4.0.0) (2019-12-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* Hooks require React version >=16.8
+
+### Features
+
+* add dev command/example using parcel ([2da3b3f](https://github.com/iiroj/react-sticky-nav/commit/2da3b3fbf02d953d054813e7dd0ec6a4d307e042))
+* optimize animation by circumventing React render ([f4475f0](https://github.com/iiroj/react-sticky-nav/commit/f4475f0182833461792a57efc74c5c7103f55f4b))
+* use closure compiler ([819594b](https://github.com/iiroj/react-sticky-nav/commit/819594bedf434df2e0da220c2e40c8934687faf4))
+* use eslint instead of tslint ([a5b756c](https://github.com/iiroj/react-sticky-nav/commit/a5b756cfb86eae0d40f7c5882707aa8fc23af633))
+* use mjs extension for esm module ([5d8e032](https://github.com/iiroj/react-sticky-nav/commit/5d8e0321d0b0c7bd3edd58953d67eeb9c7dec2d4))
+* use React Hooks ([00bb96b](https://github.com/iiroj/react-sticky-nav/commit/00bb96be638a064a2f236d3fac196c2eae884793))
+
 ### [3.1.16](https://github.com/iiroj/react-sticky-nav/compare/v3.1.15...v3.1.16) (2019-10-24)
 
 ### [3.1.15](https://github.com/iiroj/react-sticky-nav/compare/v3.1.14...v3.1.15) (2019-09-25)
