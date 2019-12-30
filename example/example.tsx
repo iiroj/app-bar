@@ -33,27 +33,22 @@ const ReactStickyNav = styled(Base)`
   padding: 20px 32px;
   position: -webkit-sticky;
   line-height: 24px;
-  transition: box-shadow 125ms;
+  transition: all 125ms;
 
   &.pinned {
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
   }
 `;
 
-const Example = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  return (
-    <Container>
-      <Reset />
-      <Padding />
-      <ReactStickyNav ref={ref}>
-        {position =>
-          `<ReactStickyNav /> is currently ${position} — Scroll up and down for demo`
-        }
-      </ReactStickyNav>
-    </Container>
-  );
-};
-
-ReactDOM.render(<Example />, document.getElementById("root"));
+ReactDOM.render(
+  <Container>
+    <Reset />
+    <Padding />
+    <ReactStickyNav>
+      {position =>
+        `<ReactStickyNav /> is currently ${position} — Scroll up and down for demo`
+      }
+    </ReactStickyNav>
+  </Container>,
+  document.getElementById("root")
+);
