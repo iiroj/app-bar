@@ -10,7 +10,13 @@ const production = !process.env.ROLLUP_WATCH;
 const external = [...Object.keys(pkg.peerDependencies)];
 
 const plugins = [
-  typescript({ clean: true, typescript: require("typescript") }),
+  typescript({
+    clean: true,
+    typescript: require("typescript"),
+    tsconfigOverride: {
+      exclude: ["example"]
+    }
+  }),
   production && compiler()
 ];
 
@@ -18,8 +24,8 @@ export default [
   {
     input: "index.tsx",
     output: [
-      { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "esm" }
+      { exports: "named", file: pkg.main, format: "cjs" },
+      { exports: "named", file: pkg.module, format: "esm" }
     ],
     external,
     plugins
@@ -27,6 +33,7 @@ export default [
   {
     input: "index.tsx",
     output: {
+      exports: "named",
       file: pkg.browser,
       format: "umd",
       globals: {
