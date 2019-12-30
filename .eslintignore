@@ -1,0 +1,7 @@
+/.cache
+/dist
+
+/index.js
+/index.mjs
+/index.umd.js
+/index.d.ts

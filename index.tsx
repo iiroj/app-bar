@@ -29,7 +29,8 @@ const enum Position {
 
 type ChildFn = (props: Position) => JSX.Element;
 
-const isChildFn = (input: any): input is ChildFn => typeof input === "function";
+const isChildFn = (input: unknown): input is ChildFn =>
+  typeof input === "function";
 
 type RenderProp = (props: {
   position: Position;
@@ -53,6 +54,8 @@ const useCombinedRefs = function<T>(...refs: React.Ref<T>[]) {
       if (typeof ref === "function") {
         ref(targetRef.current);
       } else {
+        // ref.current is supposedly read-only
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (ref as any).current = targetRef.current;
       }
     });
@@ -73,6 +76,7 @@ const StickyNav = (
   let top = React.useRef(0).current;
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useCombinedRefs(forwardedRef, innerRef);
+  const animation = useRef<number | null>(null);
 
   const handleAnimateTop = React.useCallback(() => {
     if (!ref.current || disabled) return;
@@ -124,7 +128,6 @@ const StickyNav = (
     animation.current = null;
   }, [disabled, !!render]);
 
-  const animation = useRef<number | null>(null);
   const handleScroll = () => {
     if (animation.current) window.cancelAnimationFrame(animation.current);
     animation.current = window.requestAnimationFrame(handleAnimateTop);
