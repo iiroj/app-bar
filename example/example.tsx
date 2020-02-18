@@ -27,6 +27,13 @@ const Padding = styled.div`
   height: 128px;
 `;
 
+const Position = styled.p`
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 const ReactStickyNav = styled(Base)`
   background-color: white;
   height: 64px;
@@ -45,9 +52,13 @@ ReactDOM.render(
     <Reset />
     <Padding />
     <ReactStickyNav>
-      {position =>
-        `<ReactStickyNav /> is currently ${position} — Scroll up and down for demo`
-      }
+      {position => (
+        <>
+          {`<ReactStickyNav />`} is currently {position} — Scroll up and down
+          for demo
+          <Position>Current position: {position}</Position>
+        </>
+      )}
     </ReactStickyNav>
   </Container>,
   document.getElementById("root")
