@@ -72,8 +72,8 @@ const StickyNav = (
   forwardedRef: React.Ref<HTMLDivElement>
 ) => {
   const [position, setPosition] = useState<Position>(Position.UNFIXED);
-  let prevScroll = React.useRef(0).current;
-  let top = React.useRef(0).current;
+  const prevScroll = useRef(0);
+  const top = useRef(0);
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useCombinedRefs(forwardedRef, innerRef);
   const animation = useRef<number | null>(null);
@@ -84,15 +84,15 @@ const StickyNav = (
     if (scroll < 0) return;
 
     const { classList } = ref.current;
-    const direction = scroll - prevScroll > 0 ? "down" : "up";
-    const scrollLength = top + prevScroll - scroll;
+    const direction = scroll - prevScroll.current > 0 ? "down" : "up";
+    const scrollLength = top.current + prevScroll.current - scroll;
     const { height, top: fromTop } = ref.current.getBoundingClientRect();
 
     const newTop =
       direction === "down"
         ? Math.max(scrollLength, -height)
         : Math.min(scrollLength, 0);
-    top = newTop;
+    top.current = newTop;
     ref.current.style.top = newTop.toString();
 
     if (
@@ -124,7 +124,7 @@ const StickyNav = (
       classList.add(Position.UNFIXED);
     }
 
-    prevScroll = scroll;
+    prevScroll.current = scroll;
     animation.current = null;
   }, [disabled, !!render]);
 
@@ -156,7 +156,7 @@ const StickyNav = (
   }, []);
 
   if (render) {
-    return render({ position, ref, top });
+    return render({ position, ref, top: top.current });
   }
 
   return (
