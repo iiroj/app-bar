@@ -40,6 +40,7 @@ const ReactStickyNav = styled(Base)`
   padding: 20px 32px;
   position: -webkit-sticky;
   line-height: 24px;
+  top: 0;
   transition: all 125ms;
 
   &.pinned {

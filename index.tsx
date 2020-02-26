@@ -74,6 +74,7 @@ const StickyNav = (
   const [position, setPosition] = useState<Position>(Position.UNFIXED);
   const prevScroll = useRef(0);
   const top = useRef(0);
+  const [renderTop, setRenderTop] = useState(0); // non-mutating value for render function
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useCombinedRefs(forwardedRef, innerRef);
   const animation = useRef<number | null>(null);
@@ -94,6 +95,7 @@ const StickyNav = (
         : Math.min(scrollLength, 0);
     top.current = newTop;
     ref.current.style.top = newTop.toString();
+    if (render) setRenderTop(newTop);
 
     if (
       direction === "down" &&
@@ -156,7 +158,7 @@ const StickyNav = (
   }, []);
 
   if (render) {
-    return render({ position, ref, top: top.current });
+    return render({ position, ref, top: renderTop });
   }
 
   return (
