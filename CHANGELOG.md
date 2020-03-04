@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/iiroj/react-sticky-nav/compare/v4.0.1...v4.0.2) (2020-03-04)
+
+
+### Bug Fixes
+
+* do not pass mutating top value to render prop ([8115b5d](https://github.com/iiroj/react-sticky-nav/commit/8115b5d317e83b73a74dd4465f5d1f29a43200fe))
+
 ### [4.0.1](https://github.com/iiroj/react-sticky-nav/compare/v4.0.0...v4.0.1) (2020-02-18)
 
 ## [4.0.0](https://github.com/iiroj/react-sticky-nav/compare/v3.1.16...v4.0.0) (2019-12-30)
