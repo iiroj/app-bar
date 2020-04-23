@@ -1,11 +1,5 @@
-import React, {
-  forwardRef,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import React from "react";
+const { forwardRef, memo, useCallback, useEffect, useRef, useState } = React;
 
 /**
  * ReactStickyNav assumes that its container has `position: sticky;`
