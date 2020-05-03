@@ -1,7 +1,7 @@
-import commonjs from "rollup-plugin-commonjs";
 import compiler from "@ampproject/rollup-plugin-closure-compiler";
-import resolve from "rollup-plugin-node-resolve";
-import typescript from "rollup-plugin-typescript2";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
+import typescript from "@rollup/plugin-typescript";
 
 import pkg from "./package.json";
 
@@ -9,26 +9,29 @@ const production = !process.env.ROLLUP_WATCH;
 
 const external = [...Object.keys(pkg.peerDependencies)];
 
-const plugins = [
-  typescript({
-    clean: true,
-    typescript: require("typescript"),
-    tsconfigOverride: {
-      exclude: ["example"]
-    }
-  }),
-  production && compiler()
-];
+const getPlugins = declaration => {
+  const tsOptions = { exclude: ["example"], typescript: require("typescript") };
+
+  if (declaration) {
+    tsOptions.declaration = true;
+    tsOptions.outDir = ".";
+  }
+
+  return [typescript(tsOptions), production && compiler()];
+};
 
 export default [
   {
     input: "index.tsx",
-    output: [
-      { exports: "named", file: pkg.main, format: "cjs" },
-      { exports: "named", file: pkg.module, format: "esm" }
-    ],
+    output: { exports: "named", dir: ".", format: "cjs" },
     external,
-    plugins
+    plugins: getPlugins(true)
+  },
+  {
+    input: "index.tsx",
+    output: { exports: "named", file: pkg.module, format: "esm" },
+    external,
+    plugins: getPlugins()
   },
   {
     input: "index.tsx",
@@ -42,6 +45,6 @@ export default [
       name: "ReactStickyNav"
     },
     external,
-    plugins: [resolve(), commonjs(), ...plugins]
+    plugins: [resolve(), commonjs(), ...getPlugins()]
   }
 ];
