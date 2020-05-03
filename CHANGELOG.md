@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.4](https://github.com/iiroj/react-sticky-nav/compare/v4.0.3...v4.0.4) (2020-05-03)
+
+
+### Bug Fixes
+
+* use namespace import for React ([5dfe71b](https://github.com/iiroj/react-sticky-nav/commit/5dfe71b9fac2cedd2c422464ccb7f47fc90ab8e1))
+
 ### [4.0.3](https://github.com/iiroj/react-sticky-nav/compare/v4.0.2...v4.0.3) (2020-03-14)
 
 ### [4.0.2](https://github.com/iiroj/react-sticky-nav/compare/v4.0.1...v4.0.2) (2020-03-04)
