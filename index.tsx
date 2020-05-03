@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import * as React from "react";
 
 /**
  * ReactStickyNav assumes that its container has `position: sticky;`
@@ -24,7 +17,7 @@ type PartialHTMLElement = Omit<
 const enum Position {
   HIDDEN = "hidden",
   PINNED = "pinned",
-  UNFIXED = "unfixed"
+  UNFIXED = "unfixed",
 }
 
 type ChildFn = (props: Position) => JSX.Element;
@@ -45,11 +38,11 @@ interface Props extends PartialHTMLElement {
   readonly render?: RenderProp;
 }
 
-const useCombinedRefs = function<T>(...refs: React.Ref<T>[]) {
-  const targetRef = useRef<T>(null);
+const useCombinedRefs = function <T>(...refs: React.Ref<T>[]) {
+  const targetRef = React.useRef<T>(null);
 
-  useEffect(() => {
-    refs.forEach(ref => {
+  React.useEffect(() => {
+    refs.forEach((ref) => {
       if (!ref) return;
       if (typeof ref === "function") {
         ref(targetRef.current);
@@ -67,105 +60,104 @@ const useCombinedRefs = function<T>(...refs: React.Ref<T>[]) {
 /**
  * The ReactStickyNav component
  */
-const StickyNav = (
-  { children, disabled, render, ...props }: Props,
-  forwardedRef: React.Ref<HTMLDivElement>
-) => {
-  const [position, setPosition] = useState<Position>(Position.UNFIXED);
-  const prevScroll = useRef(0);
-  const top = useRef(0);
-  const [renderTop, setRenderTop] = useState(0); // non-mutating value for render function
-  const innerRef = useRef<HTMLDivElement>(null);
-  const ref = useCombinedRefs(forwardedRef, innerRef);
-  const animation = useRef<number | null>(null);
+const StickyNav = React.forwardRef<HTMLDivElement, Props>(
+  ({ children, disabled, render, ...props }, forwardedRef) => {
+    const [position, setPosition] = React.useState<Position>(Position.UNFIXED);
+    const prevScroll = React.useRef(0);
+    const top = React.useRef(0);
+    const [renderTop, setRenderTop] = React.useState(0); // non-mutating value for render function
+    const innerRef = React.useRef<HTMLDivElement>(null);
+    const ref = useCombinedRefs(forwardedRef, innerRef);
+    const animation = React.useRef<number | null>(null);
 
-  const handleAnimateTop = React.useCallback(() => {
-    if (!ref.current || disabled) return;
-    const scroll = window.pageYOffset;
-    if (scroll < 0) return;
+    const handleAnimateTop = React.useCallback(() => {
+      if (!ref.current || disabled) return;
+      const scroll = window.pageYOffset;
+      if (scroll < 0) return;
 
-    const { classList } = ref.current;
-    const direction = scroll - prevScroll.current > 0 ? "down" : "up";
-    const scrollLength = top.current + prevScroll.current - scroll;
-    const { height, top: fromTop } = ref.current.getBoundingClientRect();
+      const { classList } = ref.current;
+      const direction = scroll - prevScroll.current > 0 ? "down" : "up";
+      const scrollLength = top.current + prevScroll.current - scroll;
+      const { height, top: fromTop } = ref.current.getBoundingClientRect();
 
-    const newTop =
-      direction === "down"
-        ? Math.max(scrollLength, -height)
-        : Math.min(scrollLength, 0);
-    top.current = newTop;
-    ref.current.style.top = newTop.toString();
-    if (render) setRenderTop(newTop);
+      const newTop =
+        direction === "down"
+          ? Math.max(scrollLength, -height)
+          : Math.min(scrollLength, 0);
+      top.current = newTop;
+      ref.current.style.top = newTop.toString();
+      if (render) setRenderTop(newTop);
 
-    if (
-      direction === "down" &&
-      !classList.contains(Position.HIDDEN) &&
-      scrollLength < -height
-    ) {
-      setPosition(Position.HIDDEN);
-      classList.remove(Position.PINNED, Position.UNFIXED);
-      classList.add(Position.HIDDEN);
+      if (
+        direction === "down" &&
+        !classList.contains(Position.HIDDEN) &&
+        scrollLength < -height
+      ) {
+        setPosition(Position.HIDDEN);
+        classList.remove(Position.PINNED, Position.UNFIXED);
+        classList.add(Position.HIDDEN);
+      }
+
+      if (
+        direction === "up" &&
+        !classList.contains(Position.PINNED) &&
+        scrollLength > -height
+      ) {
+        setPosition(Position.PINNED);
+        classList.remove(Position.HIDDEN, Position.UNFIXED);
+        classList.add(Position.PINNED);
+      }
+
+      if (
+        !classList.contains(Position.UNFIXED) &&
+        (fromTop > 0 || scroll === 0)
+      ) {
+        setPosition(Position.UNFIXED);
+        classList.remove(Position.HIDDEN, Position.PINNED);
+        classList.add(Position.UNFIXED);
+      }
+
+      prevScroll.current = scroll;
+      animation.current = null;
+    }, [disabled, !!render]);
+
+    const handleScroll = () => {
+      if (animation.current) window.cancelAnimationFrame(animation.current);
+      animation.current = window.requestAnimationFrame(handleAnimateTop);
+    };
+
+    const handleAddEventListener = React.useCallback(() => {
+      if (typeof (window as UndefinedWindow) !== "undefined") {
+        window.addEventListener("scroll", handleScroll);
+      }
+    }, [handleScroll]);
+
+    const handleRemoveEventListener = React.useCallback(() => {
+      if (typeof (window as UndefinedWindow) !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    }, [handleScroll]);
+
+    React.useEffect(() => {
+      if (disabled) handleRemoveEventListener();
+      else handleAddEventListener();
+      return () => handleAddEventListener();
+    }, [disabled]);
+
+    React.useEffect(() => {
+      if (!disabled) handleAnimateTop();
+    }, []);
+
+    if (render) {
+      return render({ position, ref, top: renderTop });
     }
 
-    if (
-      direction === "up" &&
-      !classList.contains(Position.PINNED) &&
-      scrollLength > -height
-    ) {
-      setPosition(Position.PINNED);
-      classList.remove(Position.HIDDEN, Position.UNFIXED);
-      classList.add(Position.PINNED);
-    }
-
-    if (
-      !classList.contains(Position.UNFIXED) &&
-      (fromTop > 0 || scroll === 0)
-    ) {
-      setPosition(Position.UNFIXED);
-      classList.remove(Position.HIDDEN, Position.PINNED);
-      classList.add(Position.UNFIXED);
-    }
-
-    prevScroll.current = scroll;
-    animation.current = null;
-  }, [disabled, !!render]);
-
-  const handleScroll = () => {
-    if (animation.current) window.cancelAnimationFrame(animation.current);
-    animation.current = window.requestAnimationFrame(handleAnimateTop);
-  };
-
-  const handleAddEventListener = useCallback(() => {
-    if (typeof (window as UndefinedWindow) !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
-    }
-  }, [handleScroll]);
-
-  const handleRemoveEventListener = useCallback(() => {
-    if (typeof (window as UndefinedWindow) !== "undefined") {
-      window.removeEventListener("scroll", handleScroll);
-    }
-  }, [handleScroll]);
-
-  useEffect(() => {
-    if (disabled) handleRemoveEventListener();
-    else handleAddEventListener();
-    return () => handleAddEventListener();
-  }, [disabled]);
-
-  useEffect(() => {
-    if (!disabled) handleAnimateTop();
-  }, []);
-
-  if (render) {
-    return render({ position, ref, top: renderTop });
+    return (
+      <nav {...props} ref={ref} style={styles}>
+        {isChildFn(children) ? children(position) : children}
+      </nav>
+    );
   }
+);
 
-  return (
-    <nav {...props} ref={ref} style={styles}>
-      {isChildFn(children) ? children(position) : children}
-    </nav>
-  );
-};
-
-export default memo(forwardRef(StickyNav));
+export default React.memo(StickyNav);

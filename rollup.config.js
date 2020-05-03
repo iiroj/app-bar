@@ -9,8 +9,11 @@ const production = !process.env.ROLLUP_WATCH;
 
 const external = [...Object.keys(pkg.peerDependencies)];
 
-const getPlugins = declaration => {
-  const tsOptions = { exclude: ["example"], typescript: require("typescript") };
+const getPlugins = (declaration) => {
+  const tsOptions = {
+    exclude: ["example/*"],
+    typescript: require("typescript"),
+  };
 
   if (declaration) {
     tsOptions.declaration = true;
@@ -25,13 +28,13 @@ export default [
     input: "index.tsx",
     output: { exports: "named", dir: ".", format: "cjs" },
     external,
-    plugins: getPlugins(true)
+    plugins: getPlugins(true),
   },
   {
     input: "index.tsx",
     output: { exports: "named", file: pkg.module, format: "esm" },
     external,
-    plugins: getPlugins()
+    plugins: getPlugins(),
   },
   {
     input: "index.tsx",
@@ -40,11 +43,11 @@ export default [
       file: pkg.browser,
       format: "umd",
       globals: {
-        react: "React"
+        react: "React",
       },
-      name: "ReactStickyNav"
+      name: "ReactStickyNav",
     },
     external,
-    plugins: [resolve(), commonjs(), ...getPlugins()]
-  }
+    plugins: [resolve(), commonjs(), ...getPlugins()],
+  },
 ];

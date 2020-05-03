@@ -1,7 +1,7 @@
-import styled, { createGlobalStyle } from "styled-components";
-import React from "react";
-import ReactDOM from "react-dom";
 import reset from "react-style-reset/string";
+import * as ReactDOM from "react-dom";
+import * as React from "react";
+import styled, { createGlobalStyle } from "styled-components";
 
 import Base from "../index";
 
@@ -53,7 +53,7 @@ ReactDOM.render(
     <Reset />
     <Padding />
     <ReactStickyNav>
-      {position => (
+      {(position) => (
         <>
           {`<ReactStickyNav />`} is currently {position} — Scroll up and down
           for demo
