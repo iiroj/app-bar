@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.6](https://github.com/iiroj/react-sticky-nav/compare/v4.0.5...v4.0.6) (2020-05-04)
+
+
+### Bug Fixes
+
+* install eslint-plugin-react-hooks and fix errors ([411911f](https://github.com/iiroj/react-sticky-nav/commit/411911f069a34dbbdd72e40d30764e3b1769f586))
+
 ### [4.0.5](https://github.com/iiroj/react-sticky-nav/compare/v4.0.4...v4.0.5) (2020-05-04)
 
 
