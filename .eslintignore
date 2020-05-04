@@ -2,6 +2,6 @@
 /dist
 
 /index.js
-/index.mjs
+/index.esm.js
 /index.umd.js
 /index.d.ts

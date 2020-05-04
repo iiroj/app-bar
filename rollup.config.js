@@ -12,6 +12,7 @@ const external = [...Object.keys(pkg.peerDependencies)];
 const getPlugins = (declaration) => {
   const tsOptions = {
     exclude: ["example/*"],
+    sourceMap: false,
     typescript: require("typescript"),
   };
 
@@ -20,7 +21,12 @@ const getPlugins = (declaration) => {
     tsOptions.outDir = ".";
   }
 
-  return [typescript(tsOptions), production && compiler()];
+  return [
+    resolve(),
+    commonjs(),
+    typescript(tsOptions),
+    production && compiler(),
+  ];
 };
 
 export default [
@@ -48,6 +54,6 @@ export default [
       name: "ReactStickyNav",
     },
     external,
-    plugins: [resolve(), commonjs(), ...getPlugins()],
+    plugins: getPlugins(),
   },
 ];
