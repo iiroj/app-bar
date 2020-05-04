@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.5](https://github.com/iiroj/react-sticky-nav/compare/v4.0.4...v4.0.5) (2020-05-04)
+
+
+### Bug Fixes
+
+* do not use .mjs extension for module field ([d50cd55](https://github.com/iiroj/react-sticky-nav/commit/d50cd55d052d11194cef0561c18ab89e51cadf8a))
+
 ### [4.0.4](https://github.com/iiroj/react-sticky-nav/compare/v4.0.3...v4.0.4) (2020-05-03)
 
 
