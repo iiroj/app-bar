@@ -119,12 +119,12 @@ const StickyNav = React.forwardRef<HTMLDivElement, Props>(
 
       prevScroll.current = scroll;
       animation.current = null;
-    }, [disabled, !!render]);
+    }, [disabled, ref, render]);
 
-    const handleScroll = () => {
+    const handleScroll = React.useCallback(() => {
       if (animation.current) window.cancelAnimationFrame(animation.current);
       animation.current = window.requestAnimationFrame(handleAnimateTop);
-    };
+    }, [handleAnimateTop]);
 
     const handleAddEventListener = React.useCallback(() => {
       if (typeof (window as UndefinedWindow) !== "undefined") {
@@ -141,12 +141,12 @@ const StickyNav = React.forwardRef<HTMLDivElement, Props>(
     React.useEffect(() => {
       if (disabled) handleRemoveEventListener();
       else handleAddEventListener();
-      return () => handleAddEventListener();
-    }, [disabled]);
+      return () => handleRemoveEventListener();
+    }, [disabled, handleAddEventListener, handleRemoveEventListener]);
 
     React.useEffect(() => {
       if (!disabled) handleAnimateTop();
-    }, []);
+    }, [disabled, handleAnimateTop]);
 
     if (render) {
       return render({ position, ref, top: renderTop });
